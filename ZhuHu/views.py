@@ -46,15 +46,16 @@ def people(request, user_id):
     }
     #return HttpResponse('mistake input')
     if request.method == 'POST':
+
         input_title = request.POST.get('title', '')
         input_content = request.POST.get('content', '')
-
-        add = Question()
-        add.user = user
-        add.title = input_title
-        add.content = input_content
-        add.release_date = timezone.now()
-        add.save()
+        if input_content != '' and input_content != '':
+            add = Question()
+            add.user = user
+            add.title = input_title
+            add.content = input_content
+            add.release_date = timezone.now()
+            add.save()
         return render(request, 'people.html', ctx)
     else:
         return render(request, 'people.html', ctx)
